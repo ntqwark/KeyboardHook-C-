@@ -1,0 +1,22 @@
+
+#include "Hook.h"
+#include "Windows.h"
+
+...
+
+void callback1() { ... }
+void callback2() { ... }
+
+...
+
+// Create instance of keyboard hook class
+KeyboardHook *kh = new KeyboardHook();
+
+// Добавляем обработки сочитания клавиш F1 и F2 одновременно
+kh->add_handle_combo({ VK_F1, VK_F2 }, callback1);
+// Добавление обработки клавишы F3
+kh->add_handle_key(VK_F3, callback2);
+
+kh->initialize();
+
+// Далее при нажатии сочетания клавиш F1 и F2 будет вызвана функция callback1, при нажатии клавиши F3 будет вызвана функция callback2
